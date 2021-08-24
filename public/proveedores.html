@@ -1,13 +1,50 @@
 <html>
+    <head>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <title> Lista de proveedores</title>
+    <body>
+        <table class="table table-striped">
+            <thead >
+              <th></th>
+              <th style="text-align: center"><H3><b>Lista de clientes</b></H3></th>
+              <th></th>
+            </thead>
+            <thead>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Contacto</th>
+            </thead>
+            <tbody id="tablebodylol">
 
-<head>
-  <title>Express</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
+            </tbody>
+        </table>
 
-<body>
-  <h1>Express</h1>
-  <p>Welcome to Express</p>
-</body>
+        <script>
+            let url = 'https://gist.githubusercontent.com/josejbocanegra/d3b26f97573a823a9d0df4ec68fef45f/raw/66440575649e007a9770bcd480badcbbc6a41ba7/proveedores.json'
 
+            console.log("loading");
+
+            axios.get(url)
+              .then(function (response) {
+                let json = response;
+
+                let tableText = "";
+                json.data.forEach((user) => {
+                    tableText += "<tr>";
+                    tableText += "<td>"+user.idproveedor+"</td>";
+                    tableText += "<td>"+user.nombrecompania+"</td>";
+                    tableText += "<td>"+user.nombrecontacto+"</td>";
+                    tableText += "</tr>";
+                });
+
+                document.getElementById('tablebodylol').innerHTML = tableText;
+              })
+              .catch(function (error) {
+                console.log(error);
+              })
+        
+        </script>
+    </body>
 </html>

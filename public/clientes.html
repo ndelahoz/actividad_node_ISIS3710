@@ -1,29 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" 
-        content="width=device-width,
-                 initial-scale=1,
-                 shrink-to-fit=no">
-  <title>
-    load data from json file 
-    into a bootstrap table
-  </title>
-  
- <body>
+<html>
+    <head>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <title> Lista de clientes</title>
+    <body>
+        <table class="table table-striped">
+            <thead >
+              <th></th>
+              <th style="text-align: center"><H3><b>Lista de clientes</b></H3></th>
+              <th></th>
+            </thead>
+            <thead>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Contacto</th>
+            </thead>
+            <tbody id="tablebodylol">
 
-  <table
-  data-toggle="table"
-  data-url="/Users/nico/Documents/ProyectosWeb/sampleexpress/clientes.json"
-  data-pagination="true"
-  data-search="true">
-  <thead>
-    <tr>
-      <th data-sortable="true" data-field="id">Item ID</th>
-      <th data-field="name">Item Name</th>
-      <th data-field="price">Item Price</th>
-    </tr>
-  </thead>
-</table>
-</body>
+            </tbody>
+        </table>
+
+        <script>
+            let url = 'https://gist.githubusercontent.com/josejbocanegra/986182ce2dd3e6246adcf960f9cda061/raw/f013c156f37c34117c0d4ba9779b15d427fb8dcd/clientes.json'
+
+            console.log("loading");
+
+            axios.get(url)
+              .then(function (response) {
+                let json = response;
+
+                let tableText = "";
+                json.data.forEach((user) => {
+                    tableText += "<tr>";
+                    tableText += "<td>"+user.idCliente+"</td>";
+                    tableText += "<td>"+user.NombreCompania+"</td>";
+                    tableText += "<td>"+user.NombreContacto+"</td>";
+                    tableText += "</tr>";
+                });
+
+                document.getElementById('tablebodylol').innerHTML = tableText;
+              })
+              .catch(function (error) {
+                console.log(error);
+              })
+        
+        </script>
+    </body>
+</html>

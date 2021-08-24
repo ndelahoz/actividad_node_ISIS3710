@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" 
+        content="width=device-width,
+                 initial-scale=1,
+                 shrink-to-fit=no">
+  <title>
+    load data from json file 
+    into a bootstrap table
+  </title>
+  
+ <body>
+
+  <table
+  data-toggle="table"
+  data-url="/Users/nico/Documents/ProyectosWeb/sampleexpress/clientes.json"
+  data-pagination="true"
+  data-search="true">
+  <thead>
+    <tr>
+      <th data-sortable="true" data-field="id">Item ID</th>
+      <th data-field="name">Item Name</th>
+      <th data-field="price">Item Price</th>
+    </tr>
+  </thead>
+</table>
+</body>
